@@ -1,0 +1,23 @@
+{
+  "posts/welcome/index.qmd": {
+    "index.html": "551bd13b"
+  },
+  "posts/post-with-code/index.qmd": {
+    "index.html": "7a18c063"
+  },
+  "index.qmd": {
+    "index.html": "c2d6b975"
+  },
+  "about.qmd": {
+    "about.html": "e7b34c14"
+  },
+  "posts/basics.ipynb": {
+    "basics.html": "59a17ad4"
+  },
+  "posts/2023-04-16-chinchilla.ipynb": {
+    "2023-04-16-chinchilla.html": "800fcdb8"
+  },
+  "posts/2023-04-21-prompting.ipynb": {
+    "2023-04-21-prompting.html": "e962baef"
+  }
+}
