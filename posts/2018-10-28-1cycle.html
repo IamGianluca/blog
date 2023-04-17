@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Gianluca Rossi">
-<meta name="dcterms.date" content="2023-04-17">
+<meta name="dcterms.date" content="2018-10-28">
 
-<title>iamgianluca - Paper review: Training Compute-Optimal Large Language Models</title>
+<title>iamgianluca - Paper review: A disciplined approach to neural network hyper-parameters: Part 1 – learning rate, batch size, momentum, and weight decay</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -107,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Paper review: Training Compute-Optimal Large Language Models</h1>
+      <h1 class="title">Paper review: A disciplined approach to neural network hyper-parameters: Part 1 – learning rate, batch size, momentum, and weight decay</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">arxiv</div>
               </div>
@@ -127,7 +127,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">April 17, 2023</p>
+        <p class="date">October 28, 2018</p>
       </div>
     </div>
     
@@ -145,24 +145,48 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="whats-new" class="level2">
-<h2 class="anchored" data-anchor-id="whats-new">What’s new?</h2>
-<p>In <a href="https://arxiv.org/abs/2203.15556">a paper published in 2022</a>, researchers from DeepMind showed how we can extrapolate the ideal model size (N) and pre-training dataset size (D) to achieve thelowest possible validation loss given a predefined compute budget.</p>
+<p>In his most recent <a href="https://arxiv.org/abs/1803.09820">work</a>, Leslie N. Smith gives extremely useful practical advice on how to train neural networks and tune the most important hyper-parameters. In his experiments, Smith was able to improve the current State Of The Art (SOTA) results on a number of datasets and network combinations, including the popular CIFAR-10, CIFAR-100, MNIST, and ImageNet.</p>
+<p>Smith argues that Learning Rate (LR), Momentum, batch size, and weight decay should be tuned synchronously to find the best configuration that minizines the validation loss and maximize validation accuracy. Such intuitive remark has however been elusive for many researchers in the recent past due to the computational cost associated with such strategies. An extensive grid search across a 4-dimensional hyper-parameters space would, in fact, be extremely expensive ― especially for the average user who doesn’t have at his disposal a cluster of GPUs for running experiments.</p>
+<p>Leslie Smith goal is therefore to both shade a light on the intrinsic dependencies between such hyper-parameters and presents a good heuristic to rapidly identify the best combination. In addition to that, Smith also gives easy to follow rules of thumbs regarding good starting hyper-parameters to use when approaching a new dataset or architecture, and hints at how to improve on the initial configuration. In this paper, Smith also introduces what he calls the 1cycle policy, a strategy to train neural networks which shows super-convergence capabilities in many datasets if hyper-parameters are correctly chosen.</p>
+<section id="underfitting-and-overfitting" class="level3">
+<h3 class="anchored" data-anchor-id="underfitting-and-overfitting">Underfitting and Overfitting</h3>
+<p>Smith points out how, to minimize the prediction error, we need to identify the sweet spot between underfitting and overfitting.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="2018-10-28-1cycle_files/figure-html/fb7c8767-8080-4628-b9f5-9fe459b6495e-2-d499145b-bc2a-45d4-89e1-02733fc8abf4.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Relationship between underfitting and overfitting</figcaption><p></p>
+</figure>
+</div>
+<p>He argues that hyper-parameter configurations which more rapidly reduce the validation loss in the first few epochs and then plateau are generally best, since they:</p>
+<ol type="1">
+<li>Empirically reach lower validation loss</li>
+<li>Dramatically reduce computing time ― that can, therefore, be allocated to experiment other things</li>
+</ol>
+<p>Smith stresses how large Learning Rate values are desirable since they reduce underfitting and help to regularize the training. On other hand, Smith reminds the reader that extremely high values of Learning Rate can cause the training to diverge. To quickly identify reasonable minimum and maximum boundary values for the Learning Rates with only a few epochs, Smith suggests to use the “LR range test”, which he proposed in <a href="https://arxiv.org/abs/1506.01186">an earlier paper</a>.</p>
 </section>
-<section id="how-does-it-works" class="level2">
-<h2 class="anchored" data-anchor-id="how-does-it-works">How does it works?</h2>
-<p>The team at DeepMind did run over 400 experiments with models ranging from 0.5B to 17B parameters and different dataset sizes. Critically, they chose these quantities while keeping fixed computing budgets, in order to later fit three models to estimate the optimal values for N and D to minimize the validation loss. The team used three approaches to estimating the optimal value for those quantities. All three approaches converged to very similar solutions, where doubling the size of the model should require doubling also the size of the training dataset.</p>
-<p><img src="2023-04-17-chinchilla_files/figure-html/1a4b9ce7-cc46-481e-8874-23dacebaeccc-1-5a1fdb86-6930-4277-94b5-c9692e673eb1.png" class="img-fluid"></p>
-<p>To prove the validity of their findings, they trained a new LLM, named Chinchilla (70B parameters, 1.4T tokens), which was able to outperform much larger models like GPT-3 (175B parameters, 300B tokens) and Gopher (280B parameters, 300B tokens) in a series of benchmarks.</p>
-<p><img src="2023-04-17-chinchilla_files/figure-html/1a4b9ce7-cc46-481e-8874-23dacebaeccc-2-90e933b8-fb81-4f3c-806d-bc23e13a9ddb.png" class="img-fluid"></p>
+<section id="the-1cycle-policy" class="level3">
+<h3 class="anchored" data-anchor-id="the-1cycle-policy">The 1cycle policy</h3>
+<p>Such a policy requires the coordinated change of Learning Rate and <a href="https://en.wikipedia.org/wiki/Stochastic_gradient_descent#Momentum">Momentum</a> during training time. During the course of over <a href="https://mlconf.com/interview-with-leslie-n-smith-phd-senior-research-scientist-at-the-us-naval-research-laboratory-by-reshama-shaikh-program-committee-member/">1,000 experiment</a>, Smith noticed how a strategy of one cycle length wherein the first half we increase the LR while decrease Momentum, and then revert the trends in the second half of the cycle, seems to perform particularly well.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="2018-10-28-1cycle_files/figure-html/fb7c8767-8080-4628-b9f5-9fe459b6495e-1-810569dd-7d75-4e53-9653-cafcf6b4d647.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">The 1cycle policy</figcaption><p></p>
+</figure>
+</div>
+<p>In Smith experiments, such policy outperforms in terms of validation score any other previously known training policy, and achieves optimal results in a fraction of the necessary epochs.</p>
 </section>
-<section id="why-it-matters" class="level2">
-<h2 class="anchored" data-anchor-id="why-it-matters">Why it matters?</h2>
-<p>This work shows how LLMs trained in the past few years are not compute optimal, and could have achieved better results by selecting a smaller model size and much large pre-training dataset size. This is a significant results because it shows that much smaller models, that are cheaper to train and use at inference time, can be competitive and even outperform much larger models trained on less data.</p>
+<section id="batch-size-weight-decay-and-dropout" class="level3">
+<h3 class="anchored" data-anchor-id="batch-size-weight-decay-and-dropout">Batch size, weight decay, and dropout</h3>
+<p>Small batch sizes, weight decay, and dropout are other popular techniques to regularize neural networks. Smith argues that these regularization techniques should be reduced in favor of using larger learning rates. Larger learning rates, in fact, provide as good regularization properties and, additionally, allow convergence in a shorter number of iterations.</p>
+<p>Smith suggested to use the largest batch size allowed by our server and to try a few different combinations of weight decay and dropout while comparing the results using the “LR range test”.</p>
 </section>
-<section id="what-do-we-think" class="level2">
-<h2 class="anchored" data-anchor-id="what-do-we-think">What do we think?</h2>
-<p>Compute optimal models are not necessarily the best models. As shown in recent work from XXX, given a fixed model size, training a model with even more tokens than what suggested in this paper, can lead to an even better model, while suffering minimal computing overhead. That said, the scaling law published by DeepMind can give us a good starting point to select a smaller model and dataset size to iterate fast, before confidently scale the model and dataset size</p>
+<section id="generalization-to-different-network-architectures-and-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="generalization-to-different-network-architectures-and-dataset">Generalization to different network architectures and dataset</h3>
+<p>Finally, Smith explores how his recommendations generalize to different network architectures and datasets. Interestingly, he shows how his recommendations hold not just for shallow and residual networks but also in deep architectures like densenets, and hyper-densenets. He also shares <a href="https://github.com/lnsmith54/hyperParam1">the code</a> he used to improve the results presented in numerous studies while also considerably reducing training time. This is extremely important to further validate the hypothesis that the 1cycle policy is the best currently known general strategy to optimize both shallow and deep networks architectures.</p>
+</section>
+<section id="conclusions" class="level3">
+<h3 class="anchored" data-anchor-id="conclusions">Conclusions</h3>
+<p>The recent work of Leslie N. Smith has been fundaments to democratize deep learning and achieving SOTA results on single and multi-GPU configurations. The “LR range test”, 1cycle policy, and the heuristics to tune Learning Rate, Momentum, batch size and weight decay presented in this paper are advancing what previously presented in the literature.</p>
 
 
 </section>
