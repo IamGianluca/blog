@@ -1,6 +1,6 @@
 ---
 title: "About"
-image: profile.jpg
+image: github-profile-pic.jpeg
 about:
   template: jolla
   links:
@@ -17,3 +17,19 @@ about:
 ---
 
 Yet another blog about AI/ML :-)
+
+Welcome to my blog!
+
+My name is Gianluca — although my friends call me Luca!
+
+I've been passionate about Machine Learning since 2013, when I first came across it at my first job after college in a digital advertising company. After starting as a Campaign Analyst, I was lucky enough to join the Machine Learning team and got hooked in. Since then, I've been on a journey to learn more about AI and ML. 
+
+Along this journey I've been lucky enough to meet some fantastic people and learning a lot from them. 
+
+This is blog is meant to be a space for me to explain some interesting ML concepts and share some of my own research. I believe the best way of learning something is to teach it to someone else, and a blog is a good way to accomplish that.
+
+I hope you enjoy my writing and share your comments and feedback. 
+
+Best,
+
+Luca
