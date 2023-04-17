@@ -148,7 +148,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="how-does-it-works" class="level2">
 <h2 class="anchored" data-anchor-id="how-does-it-works">How does it works?</h2>
-<p>The team at DeepMind did run over 400 experiments with models ranging from 0.5B to 17B parameters and different dataset sizes. Critically, they chose these quantities while keeping fixed computing budgets, in order to later fit three models to estimate the optimal values for N and D to minimize the validation loss. The team used three models to estimating the optimal value for those quantities. All three models converged to very similar solutions.</p>
+<p>The team at DeepMind did run over 400 experiments with models ranging from 0.5B to 17B parameters and different dataset sizes. Critically, they chose these quantities while keeping fixed computing budgets, in order to later fit three models to estimate the optimal values for N and D to minimize the validation loss. The team used three approaches to estimating the optimal value for those quantities. All three approaches converged to very similar solutions, where doubling the size of the model should require doubling also the size of the training dataset.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="2023-04-16-chinchilla_files/figure-html/1a4b9ce7-cc46-481e-8874-23dacebaeccc-1-5a1fdb86-6930-4277-94b5-c9692e673eb1.png" class="img-fluid figure-img"></p>
