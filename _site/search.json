@@ -14,25 +14,11 @@
     "text": "This is a post with executable code."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "blog",
+    "objectID": "posts/2023-04-16-chinchilla.html",
+    "href": "posts/2023-04-16-chinchilla.html",
+    "title": "Paper review: Training Compute-Optimal Large Language Models",
     "section": "",
-    "text": "Post With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nApr 14, 2023\n\n\nHarlow Malloc\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nApr 11, 2023\n\n\nTristan O’Malley\n\n\n\n\n\n\n  \n\n\n\n\nFew-Shot Learning\n\n\n\n\n\n\n\n\n\n\n\n\nInvalid Date\n\n\nGianluca Rossi\n\n\n\n\n\n\n  \n\n\n\n\nPaper review: Training Compute-Optimal Large Language Models\n\n\n\n\n\n\n\n\n\n\n\n\nInvalid Date\n\n\nGianluca Rossi\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "Yet another blog about AI/ML :-)"
-  },
-  {
-    "objectID": "posts/basics.html",
-    "href": "posts/basics.html",
-    "title": "Hi, this is the first time I use Quarto",
-    "section": "",
-    "text": "This post is for me to figure out how Quarto works\n\nprint(\"Hello Ladies and Gentlemen\")\n\nHello Ladies and Gentlemen"
+    "text": "Link: Training Compute-Optimal Large Language Models"
   },
   {
     "objectID": "posts/2023-04-16-chinchilla.html#whats-new",
@@ -46,7 +32,7 @@
     "href": "posts/2023-04-16-chinchilla.html#how-does-it-works",
     "title": "Paper review: Training Compute-Optimal Large Language Models",
     "section": "How does it works?",
-    "text": "How does it works?\nThe team at DeepMind did run over 400 experiments with models ranging from 0.5B to 17B parameters and different dataset sizes. Critically, they chose these quantities while keeping fixed computing budgets, in order to later fit three models to estimate the optimal values for N and D to minimize the validation loss. The team used three models to estimating the optimal value for those quantities. All three models converged to very similar solutions.\n\n\n\nimage.png\n\n\nTo prove the validity of their findings, they trained a new LLM, named Chinchilla (70B parameters, 1.4T tokens), which was able to outperform much larger models like GPT-3 (175B parameters, 300B tokens) and Gopher (280B parameters, 300B tokens) in a series of benchmarks.\n\n\n\nimage.png"
+    "text": "How does it works?\nThe team at DeepMind did run over 400 experiments with models ranging from 0.5B to 17B parameters and different dataset sizes. Critically, they chose these quantities while keeping fixed computing budgets, in order to later fit three models to estimate the optimal values for N and D to minimize the validation loss. The team used three approaches to estimating the optimal value for those quantities. All three approaches converged to very similar solutions, where doubling the size of the model should require doubling also the size of the training dataset.\n\n\n\nimage.png\n\n\nTo prove the validity of their findings, they trained a new LLM, named Chinchilla (70B parameters, 1.4T tokens), which was able to outperform much larger models like GPT-3 (175B parameters, 300B tokens) and Gopher (280B parameters, 300B tokens) in a series of benchmarks.\n\n\n\nimage.png"
   },
   {
     "objectID": "posts/2023-04-16-chinchilla.html#why-it-matters",
@@ -63,10 +49,17 @@
     "text": "What do we think?\nCompute optimal models are not necessarily the best models. As shown in recent work from XXX, given a fixed model size, training a model with even more tokens than what suggested in this paper, can lead to an even better model, while suffering minimal computing overhead. That said, the scaling law published by DeepMind can give us a good starting point to select a smaller model and dataset size to iterate fast, before confidently scale the model and dataset size"
   },
   {
-    "objectID": "posts/2023-04-16-chinchilla.html",
-    "href": "posts/2023-04-16-chinchilla.html",
-    "title": "Paper review: Training Compute-Optimal Large Language Models",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "blog",
     "section": "",
-    "text": "Link: Training Compute-Optimal Large Language Models"
+    "text": "Post With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nApr 14, 2023\n\n\nHarlow Malloc\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nApr 11, 2023\n\n\nTristan O’Malley\n\n\n\n\n\n\n  \n\n\n\n\nPaper review: Training Compute-Optimal Large Language Models\n\n\n\n\n\n\n\n\n\n\n\n\nInvalid Date\n\n\nGianluca Rossi\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Yet another blog about AI/ML :-)"
   }
 ]
