@@ -4,14 +4,14 @@
     "href": "posts/2023-04-17-chinchilla.html",
     "title": "Paper review: Training Compute-Optimal Large Language Models",
     "section": "",
-    "text": "Link: Training Compute-Optimal Large Language Models"
+    "text": "In a paper published in 2022, researchers from DeepMind showed how we can extrapolate the ideal model size (N) and pre-training dataset size (D) to achieve thelowest possible validation loss given a predefined compute budget."
   },
   {
     "objectID": "posts/2023-04-17-chinchilla.html#whats-new",
     "href": "posts/2023-04-17-chinchilla.html#whats-new",
     "title": "Paper review: Training Compute-Optimal Large Language Models",
-    "section": "What’s new?",
-    "text": "What’s new?\nIn a paper published in 2022, researchers from DeepMind showed how we can extrapolate the ideal model size (N) and pre-training dataset size (D) to achieve thelowest possible validation loss given a predefined compute budget."
+    "section": "",
+    "text": "In a paper published in 2022, researchers from DeepMind showed how we can extrapolate the ideal model size (N) and pre-training dataset size (D) to achieve thelowest possible validation loss given a predefined compute budget."
   },
   {
     "objectID": "posts/2023-04-17-chinchilla.html#how-does-it-works",
@@ -35,18 +35,25 @@
     "text": "What do we think?\nCompute optimal models are not necessarily the best models. As shown in recent work from XXX, given a fixed model size, training a model with even more tokens than what suggested in this paper, can lead to an even better model, while suffering minimal computing overhead. That said, the scaling law published by DeepMind can give us a good starting point to select a smaller model and dataset size to iterate fast, before confidently scale the model and dataset size"
   },
   {
-    "objectID": "posts/2023-04-16-welcome.html",
-    "href": "posts/2023-04-16-welcome.html",
+    "objectID": "posts/2018-02-26-welcome.html",
+    "href": "posts/2018-02-26-welcome.html",
     "title": "Welcome to my blog",
     "section": "",
     "text": "Welcome to my blog!\nMy name is Gianluca — although my friends call me Luca!\nI’ve been passionate about Machine Learning since 2013, when I first came across it at my first job after college in a digital advertising company. After starting as a Campaign Analyst, I was lucky enough to join the Machine Learning team and got hooked in. Since then, I’ve been on a journey to learn more about AI and ML.\n\nThis is blog is meant to be a space for me to explain some interesting ML concepts and share some of my own research. I believe the best way of learning something is to teach it to someone else, and a blog is a good way to accomplish that.\nI hope you enjoy my writing and share your comments and feedback.\nBest,\nLuca"
+  },
+  {
+    "objectID": "posts/2018-10-28-1cycle.html",
+    "href": "posts/2018-10-28-1cycle.html",
+    "title": "Paper review: A disciplined approach to neural network hyper-parameters: Part 1 – learning rate, batch size, momentum, and weight decay",
+    "section": "",
+    "text": "In his most recent work, Leslie N. Smith gives extremely useful practical advice on how to train neural networks and tune the most important hyper-parameters. In his experiments, Smith was able to improve the current State Of The Art (SOTA) results on a number of datasets and network combinations, including the popular CIFAR-10, CIFAR-100, MNIST, and ImageNet.\nSmith argues that Learning Rate (LR), Momentum, batch size, and weight decay should be tuned synchronously to find the best configuration that minizines the validation loss and maximize validation accuracy. Such intuitive remark has however been elusive for many researchers in the recent past due to the computational cost associated with such strategies. An extensive grid search across a 4-dimensional hyper-parameters space would, in fact, be extremely expensive ― especially for the average user who doesn’t have at his disposal a cluster of GPUs for running experiments.\nLeslie Smith goal is therefore to both shade a light on the intrinsic dependencies between such hyper-parameters and presents a good heuristic to rapidly identify the best combination. In addition to that, Smith also gives easy to follow rules of thumbs regarding good starting hyper-parameters to use when approaching a new dataset or architecture, and hints at how to improve on the initial configuration. In this paper, Smith also introduces what he calls the 1cycle policy, a strategy to train neural networks which shows super-convergence capabilities in many datasets if hyper-parameters are correctly chosen.\n\nUnderfitting and Overfitting\nSmith points out how, to minimize the prediction error, we need to identify the sweet spot between underfitting and overfitting.\n\n\n\nRelationship between underfitting and overfitting\n\n\nHe argues that hyper-parameter configurations which more rapidly reduce the validation loss in the first few epochs and then plateau are generally best, since they:\n\nEmpirically reach lower validation loss\nDramatically reduce computing time ― that can, therefore, be allocated to experiment other things\n\nSmith stresses how large Learning Rate values are desirable since they reduce underfitting and help to regularize the training. On other hand, Smith reminds the reader that extremely high values of Learning Rate can cause the training to diverge. To quickly identify reasonable minimum and maximum boundary values for the Learning Rates with only a few epochs, Smith suggests to use the “LR range test”, which he proposed in an earlier paper.\n\n\nThe 1cycle policy\nSuch a policy requires the coordinated change of Learning Rate and Momentum during training time. During the course of over 1,000 experiment, Smith noticed how a strategy of one cycle length wherein the first half we increase the LR while decrease Momentum, and then revert the trends in the second half of the cycle, seems to perform particularly well.\n\n\n\nThe 1cycle policy\n\n\nIn Smith experiments, such policy outperforms in terms of validation score any other previously known training policy, and achieves optimal results in a fraction of the necessary epochs.\n\n\nBatch size, weight decay, and dropout\nSmall batch sizes, weight decay, and dropout are other popular techniques to regularize neural networks. Smith argues that these regularization techniques should be reduced in favor of using larger learning rates. Larger learning rates, in fact, provide as good regularization properties and, additionally, allow convergence in a shorter number of iterations.\nSmith suggested to use the largest batch size allowed by our server and to try a few different combinations of weight decay and dropout while comparing the results using the “LR range test”.\n\n\nGeneralization to different network architectures and dataset\nFinally, Smith explores how his recommendations generalize to different network architectures and datasets. Interestingly, he shows how his recommendations hold not just for shallow and residual networks but also in deep architectures like densenets, and hyper-densenets. He also shares the code he used to improve the results presented in numerous studies while also considerably reducing training time. This is extremely important to further validate the hypothesis that the 1cycle policy is the best currently known general strategy to optimize both shallow and deep networks architectures.\n\n\nConclusions\nThe recent work of Leslie N. Smith has been fundaments to democratize deep learning and achieving SOTA results on single and multi-GPU configurations. The “LR range test”, 1cycle policy, and the heuristics to tune Learning Rate, Momentum, batch size and weight decay presented in this paper are advancing what previously presented in the literature."
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "blog",
     "section": "",
-    "text": "Paper review: Training Compute-Optimal Large Language Models\n\n\n\n\n\n\n\narxiv\n\n\n\n\n\n\n\n\n\n\n\nApr 17, 2023\n\n\nGianluca Rossi\n\n\n\n\n\n\n  \n\n\n\n\nWelcome to my blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nApr 16, 2023\n\n\nGianluca Rossi\n\n\n\n\n\n\nNo matching items"
+    "text": "Paper review: Training Compute-Optimal Large Language Models\n\n\n\n\n\n\n\narxiv\n\n\n\n\n\n\n\n\n\n\n\nApr 17, 2023\n\n\nGianluca Rossi\n\n\n\n\n\n\n  \n\n\n\n\nPaper review: A disciplined approach to neural network hyper-parameters: Part 1 – learning rate, batch size, momentum, and weight decay\n\n\n\n\n\n\n\narxiv\n\n\n\n\n\n\n\n\n\n\n\nOct 28, 2018\n\n\nGianluca Rossi\n\n\n\n\n\n\n  \n\n\n\n\nWelcome to my blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nFeb 26, 2018\n\n\nGianluca Rossi\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",

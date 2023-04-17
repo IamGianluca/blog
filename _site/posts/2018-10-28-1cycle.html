@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Gianluca Rossi">
-<meta name="dcterms.date" content="2023-04-16">
+<meta name="dcterms.date" content="2018-10-28">
 
-<title>iamgianluca - Welcome to my blog</title>
+<title>iamgianluca - Paper review: A disciplined approach to neural network hyper-parameters: Part 1 – learning rate, batch size, momentum, and weight decay</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -107,9 +107,9 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Welcome to my blog</h1>
+      <h1 class="title">Paper review: A disciplined approach to neural network hyper-parameters: Part 1 – learning rate, batch size, momentum, and weight decay</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">news</div>
+                <div class="quarto-category">arxiv</div>
               </div>
                   </div>
   </div>
@@ -127,7 +127,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">April 16, 2023</p>
+        <p class="date">October 28, 2018</p>
       </div>
     </div>
     
@@ -145,16 +145,51 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>Welcome to my blog!</p>
-<p>My name is Gianluca — although my friends call me Luca!</p>
-<p>I’ve been passionate about Machine Learning since 2013, when I first came across it at my first job after college in a digital advertising company. After starting as a Campaign Analyst, I was lucky enough to join the Machine Learning team and got hooked in. Since then, I’ve been on a journey to learn more about AI and ML.</p>
-<p><img src="2023-04-16-welcome_files/figure-html/d37224a7-3fa0-4775-bb3f-9597aaa46158-1-5c910f46-9ebe-4a0f-bc1c-52fc75657855.jpeg" class="img-fluid"></p>
-<p>This is blog is meant to be a space for me to explain some interesting ML concepts and share some of my own research. I believe the best way of learning something is to teach it to someone else, and a blog is a good way to accomplish that.</p>
-<p>I hope you enjoy my writing and share your comments and feedback.</p>
-<p>Best,</p>
-<p>Luca</p>
+<p>In his most recent <a href="https://arxiv.org/abs/1803.09820">work</a>, Leslie N. Smith gives extremely useful practical advice on how to train neural networks and tune the most important hyper-parameters. In his experiments, Smith was able to improve the current State Of The Art (SOTA) results on a number of datasets and network combinations, including the popular CIFAR-10, CIFAR-100, MNIST, and ImageNet.</p>
+<p>Smith argues that Learning Rate (LR), Momentum, batch size, and weight decay should be tuned synchronously to find the best configuration that minizines the validation loss and maximize validation accuracy. Such intuitive remark has however been elusive for many researchers in the recent past due to the computational cost associated with such strategies. An extensive grid search across a 4-dimensional hyper-parameters space would, in fact, be extremely expensive ― especially for the average user who doesn’t have at his disposal a cluster of GPUs for running experiments.</p>
+<p>Leslie Smith goal is therefore to both shade a light on the intrinsic dependencies between such hyper-parameters and presents a good heuristic to rapidly identify the best combination. In addition to that, Smith also gives easy to follow rules of thumbs regarding good starting hyper-parameters to use when approaching a new dataset or architecture, and hints at how to improve on the initial configuration. In this paper, Smith also introduces what he calls the 1cycle policy, a strategy to train neural networks which shows super-convergence capabilities in many datasets if hyper-parameters are correctly chosen.</p>
+<section id="underfitting-and-overfitting" class="level3">
+<h3 class="anchored" data-anchor-id="underfitting-and-overfitting">Underfitting and Overfitting</h3>
+<p>Smith points out how, to minimize the prediction error, we need to identify the sweet spot between underfitting and overfitting.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="2018-10-28-1cycle_files/figure-html/fb7c8767-8080-4628-b9f5-9fe459b6495e-2-d499145b-bc2a-45d4-89e1-02733fc8abf4.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Relationship between underfitting and overfitting</figcaption><p></p>
+</figure>
+</div>
+<p>He argues that hyper-parameter configurations which more rapidly reduce the validation loss in the first few epochs and then plateau are generally best, since they:</p>
+<ol type="1">
+<li>Empirically reach lower validation loss</li>
+<li>Dramatically reduce computing time ― that can, therefore, be allocated to experiment other things</li>
+</ol>
+<p>Smith stresses how large Learning Rate values are desirable since they reduce underfitting and help to regularize the training. On other hand, Smith reminds the reader that extremely high values of Learning Rate can cause the training to diverge. To quickly identify reasonable minimum and maximum boundary values for the Learning Rates with only a few epochs, Smith suggests to use the “LR range test”, which he proposed in <a href="https://arxiv.org/abs/1506.01186">an earlier paper</a>.</p>
+</section>
+<section id="the-1cycle-policy" class="level3">
+<h3 class="anchored" data-anchor-id="the-1cycle-policy">The 1cycle policy</h3>
+<p>Such a policy requires the coordinated change of Learning Rate and <a href="https://en.wikipedia.org/wiki/Stochastic_gradient_descent#Momentum">Momentum</a> during training time. During the course of over <a href="https://mlconf.com/interview-with-leslie-n-smith-phd-senior-research-scientist-at-the-us-naval-research-laboratory-by-reshama-shaikh-program-committee-member/">1,000 experiment</a>, Smith noticed how a strategy of one cycle length wherein the first half we increase the LR while decrease Momentum, and then revert the trends in the second half of the cycle, seems to perform particularly well.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="2018-10-28-1cycle_files/figure-html/fb7c8767-8080-4628-b9f5-9fe459b6495e-1-810569dd-7d75-4e53-9653-cafcf6b4d647.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">The 1cycle policy</figcaption><p></p>
+</figure>
+</div>
+<p>In Smith experiments, such policy outperforms in terms of validation score any other previously known training policy, and achieves optimal results in a fraction of the necessary epochs.</p>
+</section>
+<section id="batch-size-weight-decay-and-dropout" class="level3">
+<h3 class="anchored" data-anchor-id="batch-size-weight-decay-and-dropout">Batch size, weight decay, and dropout</h3>
+<p>Small batch sizes, weight decay, and dropout are other popular techniques to regularize neural networks. Smith argues that these regularization techniques should be reduced in favor of using larger learning rates. Larger learning rates, in fact, provide as good regularization properties and, additionally, allow convergence in a shorter number of iterations.</p>
+<p>Smith suggested to use the largest batch size allowed by our server and to try a few different combinations of weight decay and dropout while comparing the results using the “LR range test”.</p>
+</section>
+<section id="generalization-to-different-network-architectures-and-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="generalization-to-different-network-architectures-and-dataset">Generalization to different network architectures and dataset</h3>
+<p>Finally, Smith explores how his recommendations generalize to different network architectures and datasets. Interestingly, he shows how his recommendations hold not just for shallow and residual networks but also in deep architectures like densenets, and hyper-densenets. He also shares <a href="https://github.com/lnsmith54/hyperParam1">the code</a> he used to improve the results presented in numerous studies while also considerably reducing training time. This is extremely important to further validate the hypothesis that the 1cycle policy is the best currently known general strategy to optimize both shallow and deep networks architectures.</p>
+</section>
+<section id="conclusions" class="level3">
+<h3 class="anchored" data-anchor-id="conclusions">Conclusions</h3>
+<p>The recent work of Leslie N. Smith has been fundaments to democratize deep learning and achieving SOTA results on single and multi-GPU configurations. The “LR range test”, 1cycle policy, and the heuristics to tune Learning Rate, Momentum, batch size and weight decay presented in this paper are advancing what previously presented in the literature.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

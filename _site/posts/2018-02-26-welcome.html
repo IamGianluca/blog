@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Gianluca Rossi">
-<meta name="dcterms.date" content="2023-04-17">
+<meta name="dcterms.date" content="2018-02-26">
 
-<title>iamgianluca - Paper review: Training Compute-Optimal Large Language Models</title>
+<title>iamgianluca - Welcome to my blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -107,9 +107,9 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Paper review: Training Compute-Optimal Large Language Models</h1>
+      <h1 class="title">Welcome to my blog</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">arxiv</div>
+                <div class="quarto-category">news</div>
               </div>
                   </div>
   </div>
@@ -127,7 +127,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">April 17, 2023</p>
+        <p class="date">February 26, 2018</p>
       </div>
     </div>
     
@@ -145,27 +145,16 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="whats-new" class="level2">
-<h2 class="anchored" data-anchor-id="whats-new">What’s new?</h2>
-<p>In <a href="https://arxiv.org/abs/2203.15556">a paper published in 2022</a>, researchers from DeepMind showed how we can extrapolate the ideal model size (N) and pre-training dataset size (D) to achieve thelowest possible validation loss given a predefined compute budget.</p>
-</section>
-<section id="how-does-it-works" class="level2">
-<h2 class="anchored" data-anchor-id="how-does-it-works">How does it works?</h2>
-<p>The team at DeepMind did run over 400 experiments with models ranging from 0.5B to 17B parameters and different dataset sizes. Critically, they chose these quantities while keeping fixed computing budgets, in order to later fit three models to estimate the optimal values for N and D to minimize the validation loss. The team used three approaches to estimating the optimal value for those quantities. All three approaches converged to very similar solutions, where doubling the size of the model should require doubling also the size of the training dataset.</p>
-<p><img src="2023-04-17-chinchilla_files/figure-html/1a4b9ce7-cc46-481e-8874-23dacebaeccc-1-5a1fdb86-6930-4277-94b5-c9692e673eb1.png" class="img-fluid"></p>
-<p>To prove the validity of their findings, they trained a new LLM, named Chinchilla (70B parameters, 1.4T tokens), which was able to outperform much larger models like GPT-3 (175B parameters, 300B tokens) and Gopher (280B parameters, 300B tokens) in a series of benchmarks.</p>
-<p><img src="2023-04-17-chinchilla_files/figure-html/1a4b9ce7-cc46-481e-8874-23dacebaeccc-2-90e933b8-fb81-4f3c-806d-bc23e13a9ddb.png" class="img-fluid"></p>
-</section>
-<section id="why-it-matters" class="level2">
-<h2 class="anchored" data-anchor-id="why-it-matters">Why it matters?</h2>
-<p>This work shows how LLMs trained in the past few years are not compute optimal, and could have achieved better results by selecting a smaller model size and much large pre-training dataset size. This is a significant results because it shows that much smaller models, that are cheaper to train and use at inference time, can be competitive and even outperform much larger models trained on less data.</p>
-</section>
-<section id="what-do-we-think" class="level2">
-<h2 class="anchored" data-anchor-id="what-do-we-think">What do we think?</h2>
-<p>Compute optimal models are not necessarily the best models. As shown in recent work from XXX, given a fixed model size, training a model with even more tokens than what suggested in this paper, can lead to an even better model, while suffering minimal computing overhead. That said, the scaling law published by DeepMind can give us a good starting point to select a smaller model and dataset size to iterate fast, before confidently scale the model and dataset size</p>
+<p>Welcome to my blog!</p>
+<p>My name is Gianluca — although my friends call me Luca!</p>
+<p>I’ve been passionate about Machine Learning since 2013, when I first came across it at my first job after college in a digital advertising company. After starting as a Campaign Analyst, I was lucky enough to join the Machine Learning team and got hooked in. Since then, I’ve been on a journey to learn more about AI and ML.</p>
+<p><img src="2018-02-26-welcome_files/figure-html/d37224a7-3fa0-4775-bb3f-9597aaa46158-1-5c910f46-9ebe-4a0f-bc1c-52fc75657855.jpeg" class="img-fluid"></p>
+<p>This is blog is meant to be a space for me to explain some interesting ML concepts and share some of my own research. I believe the best way of learning something is to teach it to someone else, and a blog is a good way to accomplish that.</p>
+<p>I hope you enjoy my writing and share your comments and feedback.</p>
+<p>Best,</p>
+<p>Luca</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
