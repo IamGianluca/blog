@@ -7,6 +7,13 @@
     "text": "In a paper published in 2022, researchers from DeepMind showed how we can extrapolate the ideal model size (N) and pre-training dataset size (D) to achieve thelowest possible validation loss given a predefined compute budget."
   },
   {
+    "objectID": "posts/2023-04-17-chinchilla.html#whats-new",
+    "href": "posts/2023-04-17-chinchilla.html#whats-new",
+    "title": "Paper review: Training Compute-Optimal Large Language Models",
+    "section": "",
+    "text": "In a paper published in 2022, researchers from DeepMind showed how we can extrapolate the ideal model size (N) and pre-training dataset size (D) to achieve thelowest possible validation loss given a predefined compute budget."
+  },
+  {
     "objectID": "posts/2023-04-17-chinchilla.html#how-does-it-works",
     "href": "posts/2023-04-17-chinchilla.html#how-does-it-works",
     "title": "Paper review: Training Compute-Optimal Large Language Models",
