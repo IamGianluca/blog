@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Gianluca Rossi">
-<meta name="dcterms.date" content="2018-10-28">
+<meta name="dcterms.date" content="2019-09-03">
 
-<title>iamgianluca - The 1cycle policy</title>
+<title>iamgianluca - A brief introduction about Entropy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -61,6 +95,8 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -107,9 +143,9 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">The 1cycle policy</h1>
+      <h1 class="title">A brief introduction about Entropy</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">arxiv</div>
+                <div class="quarto-category">information-theory</div>
               </div>
                   </div>
   </div>
@@ -127,7 +163,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">October 28, 2018</p>
+        <p class="date">September 3, 2019</p>
       </div>
     </div>
     
@@ -145,51 +181,66 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>In his most recent <a href="https://arxiv.org/abs/1803.09820">work</a>, Leslie N. Smith gives extremely useful practical advice on how to train neural networks and tune the most important hyper-parameters. In his experiments, Smith was able to improve the current State Of The Art (SOTA) results on a number of datasets and network combinations, including the popular CIFAR-10, CIFAR-100, MNIST, and ImageNet.</p>
-<p>Smith argues that Learning Rate (LR), Momentum, batch size, and weight decay should be tuned synchronously to find the best configuration that minizines the validation loss and maximize validation accuracy. Such intuitive remark has however been elusive for many researchers in the recent past due to the computational cost associated with such strategies. An extensive grid search across a 4-dimensional hyper-parameters space would, in fact, be extremely expensive ― especially for the average user who doesn’t have at his disposal a cluster of GPUs for running experiments.</p>
-<p>Leslie Smith goal is therefore to both shade a light on the intrinsic dependencies between such hyper-parameters and presents a good heuristic to rapidly identify the best combination. In addition to that, Smith also gives easy to follow rules of thumbs regarding good starting hyper-parameters to use when approaching a new dataset or architecture, and hints at how to improve on the initial configuration. In this paper, Smith also introduces what he calls the 1cycle policy, a strategy to train neural networks which shows super-convergence capabilities in many datasets if hyper-parameters are correctly chosen.</p>
-<section id="underfitting-and-overfitting" class="level3">
-<h3 class="anchored" data-anchor-id="underfitting-and-overfitting">Underfitting and Overfitting</h3>
-<p>Smith points out how, to minimize the prediction error, we need to identify the sweet spot between underfitting and overfitting.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="2018-10-28-1cycle_files/figure-html/fb7c8767-8080-4628-b9f5-9fe459b6495e-2-d499145b-bc2a-45d4-89e1-02733fc8abf4.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">A chart showing the relationship between underfitting and overfitting</figcaption><p></p>
-</figure>
+<p>Information Theory is a cornerstone of Machine Learning, yet most Data Science practitioners haven’t been formally trained on it. This blog post is meant to give a brief introduction about entropy, a foundamental measure of uncertainty, which is used in many popular Machine Learning algorithms.</p>
+<blockquote class="blockquote">
+<p>Information theory studies the quantification, storage, and communication of information. ― cit. <a href="https://en.wikipedia.org/wiki/Information_theory">Wikipedia</a></p>
+</blockquote>
+<p>Entropy is a measure of randomness or, in other words, unpredictability. The higher the entropy, the more unpredictable an outcome is. This also represents the minimum expected code length necessary to encode samples of the random variable. Intuitively, the lower the entropy, the easier is to encode a random variable.</p>
+<p>Some popular Machine Learning algorithms ― e.g.&nbsp;Decision Tree, Random Forest, Gradient Boosting, XGBoost ― use entropy to decide when to split a leaf into two leaves.</p>
+<p>Let’s look at how entropy works using a very simple example. Let’s say we are playing a game which involves extracting marbles from an urn. Marbles can be only of two colors, either red or blue. The proportion of red and blue marbles is 70%-30%. How can we measure the uncertainty of this game? Entropy, can come to our rescue.</p>
+<p>Entropy, usually represented with the letter $ H $, is mathematically defined as:</p>
+<p><span class="math display">\[
+\begin{align}
+    H(X) &amp;= \sum_{i=1}^N P(x_i) \log P\left(\frac{1}{x_i}\right) \\
+    &amp;= - \sum_{i=1}^N P(x_i) \log P(x_i)
+\end{align}
+\]</span></p>
+<p>In our example, this would be:</p>
+<p><span class="math display">\[
+\begin{align}
+    H(X) &amp;= - \sum_{i=1}^{2} P(x_i) \log P(x_i) \\
+    &amp;= - P(x_i=blue) \log P(x_i=blue) - P(x_i=red) \log P(x_i=red) \\
+    &amp;= - .30 \log 0.30 - .70 \log 0.70 \\
+    &amp;= .610864
+\end{align}    
+\]</span></p>
+<p>If you find it easier to read code than maths, we could define the entropy in Python with this simple function.</p>
+<div class="cell" data-tags="[]" data-execution_count="1">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> entropy(p):</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Measure of randomness in Information Theory.</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">        p (iterable): The probability of success.</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">        (float) The information entropy.</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span> np.<span class="bu">sum</span>([p_i <span class="op">*</span> np.log(p_i) <span class="cf">for</span> p_i <span class="kw">in</span> p])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
-<p>He argues that hyper-parameter configurations which more rapidly reduce the validation loss in the first few epochs and then plateau are generally best, since they:</p>
-<ol type="1">
-<li>Empirically reach lower validation loss</li>
-<li>Dramatically reduce computing time ― that can, therefore, be allocated to experiment other things</li>
-</ol>
-<p>Smith stresses how large Learning Rate values are desirable since they reduce underfitting and help to regularize the training. On other hand, Smith reminds the reader that extremely high values of Learning Rate can cause the training to diverge. To quickly identify reasonable minimum and maximum boundary values for the Learning Rates with only a few epochs, Smith suggests to use the “LR range test”, which he proposed in <a href="https://arxiv.org/abs/1506.01186">an earlier paper</a>.</p>
-</section>
-<section id="the-1cycle-policy" class="level3">
-<h3 class="anchored" data-anchor-id="the-1cycle-policy">The 1cycle policy</h3>
-<p>Such a policy requires the coordinated change of Learning Rate and <a href="https://en.wikipedia.org/wiki/Stochastic_gradient_descent#Momentum">Momentum</a> during training time. During the course of over <a href="https://mlconf.com/blog/interview-with-leslie-n-smith-phd-senior-research-scientist-at-the-us-naval-research-laboratory-by-reshama-shaikh-program-committee-member/">1,000 experiment</a>, Smith noticed how a strategy of one cycle length wherein the first half we increase the LR while decrease Momentum, and then revert the trends in the second half of the cycle, seems to perform particularly well.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="2018-10-28-1cycle_files/figure-html/fb7c8767-8080-4628-b9f5-9fe459b6495e-1-810569dd-7d75-4e53-9653-cafcf6b4d647.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">A chart showing the learning rate and momentum schedule in the 1cycle policy</figcaption><p></p>
-</figure>
+<p>Then, we could open a Python interpreter and execute the following commands to verify the results.</p>
+<div class="cell" data-tags="[]" data-execution_count="2">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> [<span class="fl">.30</span>, <span class="fl">.70</span>]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>entropy(p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>0.6108643020548935</code></pre>
 </div>
-<p>In Smith experiments, such policy outperforms in terms of validation score any other previously known training policy, and achieves optimal results in a fraction of the necessary epochs.</p>
-</section>
-<section id="batch-size-weight-decay-and-dropout" class="level3">
-<h3 class="anchored" data-anchor-id="batch-size-weight-decay-and-dropout">Batch size, weight decay, and dropout</h3>
-<p>Small batch sizes, weight decay, and dropout are other popular techniques to regularize neural networks. Smith argues that these regularization techniques should be reduced in favor of using larger learning rates. Larger learning rates, in fact, provide as good regularization properties and, additionally, allow convergence in a shorter number of iterations.</p>
-<p>Smith suggested to use the largest batch size allowed by our server and to try a few different combinations of weight decay and dropout while comparing the results using the “LR range test”.</p>
-</section>
-<section id="generalization-to-different-network-architectures-and-dataset" class="level3">
-<h3 class="anchored" data-anchor-id="generalization-to-different-network-architectures-and-dataset">Generalization to different network architectures and dataset</h3>
-<p>Finally, Smith explores how his recommendations generalize to different network architectures and datasets. Interestingly, he shows how his recommendations hold not just for shallow and residual networks but also in deep architectures like densenets, and hyper-densenets. He also shares <a href="https://github.com/lnsmith54/hyperParam1">the code</a> he used to improve the results presented in numerous studies while also considerably reducing training time. This is extremely important to further validate the hypothesis that the 1cycle policy is the best currently known general strategy to optimize both shallow and deep networks architectures.</p>
-</section>
-<section id="conclusions" class="level3">
-<h3 class="anchored" data-anchor-id="conclusions">Conclusions</h3>
-<p>The recent work of Leslie N. Smith has been fundaments to democratize deep learning and achieving SOTA results on single and multi-GPU configurations. The “LR range test”, 1cycle policy, and the heuristics to tune Learning Rate, Momentum, batch size and weight decay presented in this paper are advancing what previously presented in the literature.</p>
+</div>
+<p>We haven’t yet mentioned the unit of measure of entropy, the “bit” (alternatively called “shannon”). The unit of measure of the entropy shouldn’t be confused with the binary digit.</p>
+<blockquote class="blockquote">
+<p>Confusion often arises because the words bit and binary digit are used interchangeably. But, within information theory, a bit and a binary digit are fundamentally different types of entities. A binary digit is a number that can adopt one of two possible values (0 or 1), whereas a bit is the maximum amount of information that can be conveyed by a binary digit. By analogy, a binary digit is like a container, whereas information is the amount of matter in the container. ― cit. <a href="https://en.wikipedia.org/wiki/Bit">Wikipedia</a></p>
+</blockquote>
+<p>It should also be noted that, when $ P(x_i) = 0 $ for some $ i $, the value of the corresponding summand $ 0 (0) $ is taken to be $ 0 $.</p>
+<p>In the next blog post I’ll show some applications of entropy in Machine Learning and Bayesian inference.</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
