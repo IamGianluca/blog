@@ -9,7 +9,7 @@
 <meta name="author" content="Gianluca Rossi">
 <meta name="dcterms.date" content="2018-10-28">
 
-<title>iamgianluca - Paper review: A disciplined approach to neural network hyper-parameters: Part 1 – learning rate, batch size, momentum, and weight decay</title>
+<title>iamgianluca - The 1cycle policy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -107,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Paper review: A disciplined approach to neural network hyper-parameters: Part 1 – learning rate, batch size, momentum, and weight decay</h1>
+      <h1 class="title">The 1cycle policy</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">arxiv</div>
               </div>
@@ -154,7 +154,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="2018-10-28-1cycle_files/figure-html/fb7c8767-8080-4628-b9f5-9fe459b6495e-2-d499145b-bc2a-45d4-89e1-02733fc8abf4.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Relationship between underfitting and overfitting</figcaption><p></p>
+<p></p><figcaption class="figure-caption">A chart showing the relationship between underfitting and overfitting</figcaption><p></p>
 </figure>
 </div>
 <p>He argues that hyper-parameter configurations which more rapidly reduce the validation loss in the first few epochs and then plateau are generally best, since they:</p>
@@ -166,11 +166,11 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="the-1cycle-policy" class="level3">
 <h3 class="anchored" data-anchor-id="the-1cycle-policy">The 1cycle policy</h3>
-<p>Such a policy requires the coordinated change of Learning Rate and <a href="https://en.wikipedia.org/wiki/Stochastic_gradient_descent#Momentum">Momentum</a> during training time. During the course of over <a href="https://mlconf.com/interview-with-leslie-n-smith-phd-senior-research-scientist-at-the-us-naval-research-laboratory-by-reshama-shaikh-program-committee-member/">1,000 experiment</a>, Smith noticed how a strategy of one cycle length wherein the first half we increase the LR while decrease Momentum, and then revert the trends in the second half of the cycle, seems to perform particularly well.</p>
+<p>Such a policy requires the coordinated change of Learning Rate and <a href="https://en.wikipedia.org/wiki/Stochastic_gradient_descent#Momentum">Momentum</a> during training time. During the course of over <a href="https://mlconf.com/blog/interview-with-leslie-n-smith-phd-senior-research-scientist-at-the-us-naval-research-laboratory-by-reshama-shaikh-program-committee-member/">1,000 experiment</a>, Smith noticed how a strategy of one cycle length wherein the first half we increase the LR while decrease Momentum, and then revert the trends in the second half of the cycle, seems to perform particularly well.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="2018-10-28-1cycle_files/figure-html/fb7c8767-8080-4628-b9f5-9fe459b6495e-1-810569dd-7d75-4e53-9653-cafcf6b4d647.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">The 1cycle policy</figcaption><p></p>
+<p></p><figcaption class="figure-caption">A chart showing the learning rate and momentum schedule in the 1cycle policy</figcaption><p></p>
 </figure>
 </div>
 <p>In Smith experiments, such policy outperforms in terms of validation score any other previously known training policy, and achieves optimal results in a fraction of the necessary epochs.</p>

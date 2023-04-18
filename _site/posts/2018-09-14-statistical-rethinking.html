@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Gianluca Rossi">
-<meta name="dcterms.date" content="2023-04-17">
+<meta name="dcterms.date" content="2018-09-14">
 
-<title>iamgianluca - Training Compute-Optimal LLMs</title>
+<title>iamgianluca - Statistical Rethinking</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -107,9 +107,11 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Training Compute-Optimal LLMs</h1>
+      <h1 class="title">Statistical Rethinking</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">arxiv</div>
+                <div class="quarto-category">books</div>
+                <div class="quarto-category">statistics</div>
+                <div class="quarto-category">bayes</div>
               </div>
                   </div>
   </div>
@@ -127,7 +129,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">April 17, 2023</p>
+        <p class="date">September 14, 2018</p>
       </div>
     </div>
     
@@ -145,27 +147,20 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="whats-new" class="level2">
-<h2 class="anchored" data-anchor-id="whats-new">What’s new?</h2>
-<p>In <a href="https://arxiv.org/abs/2203.15556">a paper published in 2022</a>, researchers from DeepMind showed how we can extrapolate the ideal model size (N) and pre-training dataset size (D) to achieve thelowest possible validation loss given a predefined compute budget.</p>
-</section>
-<section id="how-does-it-works" class="level2">
-<h2 class="anchored" data-anchor-id="how-does-it-works">How does it works?</h2>
-<p>The team at DeepMind did run over 400 experiments with models ranging from 0.5B to 17B parameters and different dataset sizes. Critically, they chose these quantities while keeping fixed computing budgets, in order to later fit three models to estimate the optimal values for N and D to minimize the validation loss. The team used three approaches to estimating the optimal value for those quantities. All three approaches converged to very similar solutions, where doubling the size of the model should require doubling also the size of the training dataset.</p>
-<p><img src="2023-04-17-chinchilla_files/figure-html/1a4b9ce7-cc46-481e-8874-23dacebaeccc-1-5a1fdb86-6930-4277-94b5-c9692e673eb1.png" class="img-fluid"></p>
-<p>To prove the validity of their findings, they trained a new LLM, named Chinchilla (70B parameters, 1.4T tokens), which was able to outperform much larger models like GPT-3 (175B parameters, 300B tokens) and Gopher (280B parameters, 300B tokens) in a series of benchmarks.</p>
-<p><img src="2023-04-17-chinchilla_files/figure-html/1a4b9ce7-cc46-481e-8874-23dacebaeccc-2-90e933b8-fb81-4f3c-806d-bc23e13a9ddb.png" class="img-fluid"></p>
-</section>
-<section id="why-it-matters" class="level2">
-<h2 class="anchored" data-anchor-id="why-it-matters">Why it matters?</h2>
-<p>This work shows how LLMs trained in the past few years are not compute optimal, and could have achieved better results by selecting a smaller model size and much large pre-training dataset size. This is a significant results because it shows that much smaller models, that are cheaper to train and use at inference time, can be competitive and even outperform much larger models trained on less data.</p>
-</section>
-<section id="what-do-we-think" class="level2">
-<h2 class="anchored" data-anchor-id="what-do-we-think">What do we think?</h2>
-<p>Compute optimal models are not necessarily the best models. As shown in recent work from XXX, given a fixed model size, training a model with even more tokens than what suggested in this paper, can lead to an even better model, while suffering minimal computing overhead. That said, the scaling law published by DeepMind can give us a good starting point to select a smaller model and dataset size to iterate fast, before confidently scale the model and dataset size</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://images.tandf.co.uk/common/jackets/amazon/978148225/9781482253443.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">statistical-rethinking-cover</figcaption><p></p>
+</figure>
+</div>
+<p>After reading the excellent reviews in Amazon, I decided to give it a go to the text-book <a href="https://xcelab.net/rm/statistical-rethinking/">Statistical Rethinking</a> by Richard McElreath. Long story short, I can’t praise enough the author for this great book that I wish I have discovered long time ago, when I first started doing Bayesian data analysis.</p>
+<p>The target reader for the book is a data analyst or data scientist with only a basic understanding on Bayesian inference. The author does a wonderful job of making sure to guide the reader from very simple concepts up to some intermediate level modeling techniques, like Multilevel Modeling. I’ve particularly appreciated the presence of plenty of excercises and the optional paragraphs where more advanced concepts are described ― without getting in the way of less experienced readers that want to get as much as possible from their first read of the material.</p>
+<p>The book also contains lots of examples, using R and a companion open-source library named after the book. Even though I prefer much more the Python scientific eco-system for doing Data Science, and I haven’t touched R for quite a few years now, following the examples is very easy. The author also encapsuled all of the Stan models into it’s own wrapper library. I personally would have appreciated to see more Stan code, which I find quite easily interpretable, and would be anyway the language of choice for many readers after completing this book. Nonetheless, the companion library seems to be very compelling and will centainly bring you through all the examples in the book without much effort. For more advanced models though, Stan offers more flexibility.</p>
+<p>Regarding the content, I particularly appreciated the chapters about Information Theory and Multilevel models. These are probably the most advanced ones, but they are easy to follow and quite engaging also for more experienced users.</p>
+<p>Throughout the entire book, McElreath reiterate the importance of using counterfactual plots to understand the absolute effect of a feature on the target variable, and WAIC to compare alternative models. This is something I’ve particularly appreciated and I believe it should be promoted more often. I wish these kind of advices were given to me when I started my journey into Bayesian inference.</p>
+<p>To summarize, Statistical Rethinking is a very enjoyable book, packed with important lessons for both beginner and intermediate practitioners who want to better understand how to do proper Bayesian data analysis.</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

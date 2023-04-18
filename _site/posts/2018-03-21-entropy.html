@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Gianluca Rossi">
-<meta name="dcterms.date" content="2023-04-17">
+<meta name="dcterms.date" content="2018-03-21">
 
-<title>iamgianluca - Training Compute-Optimal LLMs</title>
+<title>iamgianluca - A brief introduction about Entropy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -61,6 +95,8 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -107,9 +143,9 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Training Compute-Optimal LLMs</h1>
+      <h1 class="title">A brief introduction about Entropy</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">arxiv</div>
+                <div class="quarto-category">information-theory</div>
               </div>
                   </div>
   </div>
@@ -127,7 +163,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">April 17, 2023</p>
+        <p class="date">March 21, 2018</p>
       </div>
     </div>
     
@@ -145,27 +181,60 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="whats-new" class="level2">
-<h2 class="anchored" data-anchor-id="whats-new">What’s new?</h2>
-<p>In <a href="https://arxiv.org/abs/2203.15556">a paper published in 2022</a>, researchers from DeepMind showed how we can extrapolate the ideal model size (N) and pre-training dataset size (D) to achieve thelowest possible validation loss given a predefined compute budget.</p>
-</section>
-<section id="how-does-it-works" class="level2">
-<h2 class="anchored" data-anchor-id="how-does-it-works">How does it works?</h2>
-<p>The team at DeepMind did run over 400 experiments with models ranging from 0.5B to 17B parameters and different dataset sizes. Critically, they chose these quantities while keeping fixed computing budgets, in order to later fit three models to estimate the optimal values for N and D to minimize the validation loss. The team used three approaches to estimating the optimal value for those quantities. All three approaches converged to very similar solutions, where doubling the size of the model should require doubling also the size of the training dataset.</p>
-<p><img src="2023-04-17-chinchilla_files/figure-html/1a4b9ce7-cc46-481e-8874-23dacebaeccc-1-5a1fdb86-6930-4277-94b5-c9692e673eb1.png" class="img-fluid"></p>
-<p>To prove the validity of their findings, they trained a new LLM, named Chinchilla (70B parameters, 1.4T tokens), which was able to outperform much larger models like GPT-3 (175B parameters, 300B tokens) and Gopher (280B parameters, 300B tokens) in a series of benchmarks.</p>
-<p><img src="2023-04-17-chinchilla_files/figure-html/1a4b9ce7-cc46-481e-8874-23dacebaeccc-2-90e933b8-fb81-4f3c-806d-bc23e13a9ddb.png" class="img-fluid"></p>
-</section>
-<section id="why-it-matters" class="level2">
-<h2 class="anchored" data-anchor-id="why-it-matters">Why it matters?</h2>
-<p>This work shows how LLMs trained in the past few years are not compute optimal, and could have achieved better results by selecting a smaller model size and much large pre-training dataset size. This is a significant results because it shows that much smaller models, that are cheaper to train and use at inference time, can be competitive and even outperform much larger models trained on less data.</p>
-</section>
-<section id="what-do-we-think" class="level2">
-<h2 class="anchored" data-anchor-id="what-do-we-think">What do we think?</h2>
-<p>Compute optimal models are not necessarily the best models. As shown in recent work from XXX, given a fixed model size, training a model with even more tokens than what suggested in this paper, can lead to an even better model, while suffering minimal computing overhead. That said, the scaling law published by DeepMind can give us a good starting point to select a smaller model and dataset size to iterate fast, before confidently scale the model and dataset size</p>
+<p>Information Theory is a cornerstone of Machine Learning, yet most Data Science practitioners haven’t been formally trained on it. This blog post is meant to give a brief introduction about entropy, a foundamental measure of uncertainty, which is used in many popular Machine Learning algorithms.</p>
+<blockquote class="blockquote">
+<p>Information theory studies the quantification, storage, and communication of information. ― cit. <a href="https://en.wikipedia.org/wiki/Information_theory">Wikipedia</a></p>
+</blockquote>
+<p>Entropy is a measure of randomness or, in other words, unpredictability. The higher the entropy, the more unpredictable an outcome is. This also represents the minimum expected code length necessary to encode samples of the random variable. Intuitively, the lower the entropy, the easier is to encode a random variable.</p>
+<p>Some popular Machine Learning algorithms ― e.g.&nbsp;Decision Tree, Random Forest, Gradient Boosting, XGBoost ― use entropy to decide when to split a leaf into two leaves.</p>
+<p>Let’s look at how entropy works using a very simple example. Let’s say we are playing a game which involves extracting marbles from an urn. Marbles can be only of two colors, either red or blue. The proportion of red and blue marbles is 70%-30%. How can we measure the uncertainty of this game? Entropy, can come to our rescue.</p>
+<p>Entropy, usually represented with the letter $ H $, is mathematically defined as:</p>
+<p><span class="math display">\[
+\begin{align}
+    H(X) &amp;= \sum_{i=1}^N P(x_i) \log P\left(\frac{1}{x_i}\right) \\
+    &amp;= - \sum_{i=1}^N P(x_i) \log P(x_i)
+\end{align}
+\]</span></p>
+<p>In our example, this would be:</p>
+<p><span class="math display">\[
+\begin{align}
+    H(X) &amp;= - \sum_{i=1}^{2} P(x_i) \log P(x_i) \\
+    &amp;= - P(x_i=blue) \log P(x_i=blue) - P(x_i=red) \log P(x_i=red) \\
+    &amp;= - .30 \log 0.30 - .70 \log 0.70 \\
+    &amp;= .610864
+\end{align}    
+\]</span></p>
+<p>If you find it easier to read code than maths, we could define the entropy in Python with this simple function.</p>
+<div class="cell" data-tags="[]" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> entropy(p):</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Measure of randomness in Information Theory.</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">        p (iterable): The probability of success.</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">        (float) The information entropy.</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span> np.<span class="bu">sum</span>([p_i <span class="op">*</span> np.log(p_i) <span class="cf">for</span> p_i <span class="kw">in</span> p])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then, we could open a Python interpreter and execute the following commands to verify the results.</p>
+<div class="cell" data-tags="[]" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> [<span class="fl">.30</span>, <span class="fl">.70</span>]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>entropy(p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>0.6108643020548935</code></pre>
+</div>
+</div>
+<p>We haven’t yet mentioned the unit of measure of entropy, the “bit” (alternatively called “shannon”). The unit of measure of the entropy shouldn’t be confused with the binary digit.</p>
+<blockquote class="blockquote">
+<p>Confusion often arises because the words bit and binary digit are used interchangeably. But, within information theory, a bit and a binary digit are fundamentally different types of entities. A binary digit is a number that can adopt one of two possible values (0 or 1), whereas a bit is the maximum amount of information that can be conveyed by a binary digit. By analogy, a binary digit is like a container, whereas information is the amount of matter in the container. ― cit. <a href="https://en.wikipedia.org/wiki/Bit">Wikipedia</a></p>
+</blockquote>
+<p>It should also be noted that, when $ P(x_i) = 0 $ for some $ i $, the value of the corresponding summand $ 0 (0) $ is taken to be $ 0 $.</p>
+<p>In the next blog post I’ll show some applications of entropy in Machine Learning and Bayesian inference.</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
