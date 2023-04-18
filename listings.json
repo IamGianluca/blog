@@ -3,9 +3,9 @@
     "listing": "/index.html",
     "items": [
       "/posts/2023-04-17-chinchilla.html",
-      "/posts/2018-03-21-entropy.html",
       "/posts/2018-10-28-1cycle.html",
       "/posts/2018-09-14-statistical-rethinking.html",
+      "/posts/2018-03-21-entropy.html",
       "/posts/2018-02-26-welcome.html"
     ]
   }
