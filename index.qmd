@@ -1,5 +1,5 @@
 ---
-title: "blog"
+title: "Yet Another Blog about Machine Learning"
 listing:
   contents: posts
   sort: "date desc"
