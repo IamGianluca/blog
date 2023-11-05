@@ -16,18 +16,18 @@ about:
 
 ---
 
-Welcome to my blog!
+Welcome to my ml blog!
 
-My name is Gianluca — but you can call me Luca!
+I'm Gianluca Rossi, but feel free to call me Luca.
 
-I'm the Director of Machine Learning at Ontra.ai, where I lead a team of highly talented Machine Learning researchers and engineers working on NLP, Information Retrieval, and recommendations for legal documents. This includes in-house data labeling, neural network training, the science of making it work, and deployment in a production environment serving millions of requests every day.
+I serve as the Director of Machine Learning at Ontra, leading a team that is at the cutting edge of NLP, LLMs, Information Retrieval, and intelligent systems for understanding legal documents. Our daily work involves everything from data annotation to training sophisticated LLMs, ensuring they operate flawlessly in a high-stakes production environment.
 
-Before that, I was the Senior Machine Learning Manager at Farfetch, the largest luxury fashion marketplace in the world. My team was working on product recommendations, real-time bidding, predictive modeling, and other fun things :-)
+Before joining Ontra, I was one of the founding members of the ML team at Farfetch, where our challenges spanned from creating advanced product recommendation systems to engaging in the dynamic world of real-time bidding and predictive modeling.
 
-I've been passionate about Machine Learning since 2013 when I first came across Machine Learning as a field at my first job after college at Struq — later acquired by Quantcast. At Struq/Quantcast, we built a real-time bidding engine and a recommendation engine powering millions of personalized retargeting ads daily and had to respond with incredibly low latency. Fun times :-)
+My foray into Machine Learning began in 2013, starting with a role at Struq, which was later incorporated into Quantcast. There, we developed a robust real-time bidding engine and a personalized recommendation system, both designed for high-speed, low-latency operation.
 
-Along this journey, I've been lucky to meet some fantastic people and learn a lot from them. I'm passionate about ML/DL and software engineering, and, as you can see from my GitHub profile, I work on many side projects whenever I have time.
+Through my career, I've had the privilege of collaborating with remarkable individuals from whom I've learned immensely. My enthusiasm for machine learning, deep learning, and software engineering is reflected in the various projects you can find on my [GitHub profile](https://github.com/IamGianluca/), which I tackle in my free time.
 
-This blog is a space for me to explain some exciting ML concepts and share some of my research and experience. The best way to learn something is to teach it to someone else; a blog is an excellent way to accomplish that.
+This blog is where I share my knowledge on AI/ML topics, discussing both the theoretical underpinnings and practical applications, inspired by the philosophy that teaching is one of the best learning methods.
 
-I hope you enjoy the content and share your comments and feedback.
+I welcome you to engage with the content here, share your viewpoints, and enrich our discussions with your feedback.
