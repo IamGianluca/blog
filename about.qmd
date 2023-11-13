@@ -24,7 +24,7 @@ I currently work as the Director of Machine Learning at Ontra, leading a team of
 
 Before joining Ontra, I was one of the founding members of the ML team at Farfetch, where our challenges spanned from creating advanced product recommendation systems to engaging in the dynamic world of real-time bidding and predictive modeling.
 
-My journey into Machine Learning began in 2013, at a small start-up called Struq, which was later incorporated into Quantcast. There, we developed a robust real-time bidding engine and a personalized recommendation system, both designed for high-speed, low-latency operation, processing over 16 PetaBytes of data every day.
+My journey into Machine Learning began in 2013, at a small start-up called Struq, which was later incorporated into Quantcast. There, we developed a robust real-time bidding engine and a personalized recommendation system, both designed for real-time, low-latency operation, while processing over 16 Petabytes of data every day.
 
 Through my career, I've had the privilege of collaborating with amazing people from whom I've learned immensely. My passion for machine learning, deep learning, and software engineering is reflected in the various projects you can find on my [GitHub profile](https://github.com/IamGianluca/), which I tackle in my free time.
 
