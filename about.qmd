@@ -20,13 +20,13 @@ Welcome to my ml blog!
 
 I'm Gianluca Rossi, but feel free to call me Luca.
 
-I serve as the Director of Machine Learning at Ontra, leading a team that is at the cutting edge of NLP, LLMs, Information Retrieval, and intelligent systems for understanding legal documents. Our daily work involves everything from data annotation to training sophisticated LLMs, ensuring they operate flawlessly in a high-stakes production environment.
+I currently work as the Director of Machine Learning at Ontra, leading a team of Machine Learning Engineers and Platform Engineers working at the cutting edge of NLP, LLMs, Information Retrieval, and intelligent systems for understanding legal documents. Our daily work involves everything from collecting data annotations to training sophisticated LLMs, and ensuring they operate flawlessly in a high-stakes production environment.
 
 Before joining Ontra, I was one of the founding members of the ML team at Farfetch, where our challenges spanned from creating advanced product recommendation systems to engaging in the dynamic world of real-time bidding and predictive modeling.
 
-My foray into Machine Learning began in 2013, starting with a role at Struq, which was later incorporated into Quantcast. There, we developed a robust real-time bidding engine and a personalized recommendation system, both designed for high-speed, low-latency operation.
+My journey into Machine Learning began in 2013, at a small start-up called Struq, which was later incorporated into Quantcast. There, we developed a robust real-time bidding engine and a personalized recommendation system, both designed for high-speed, low-latency operation, processing over 16 PetaBytes of data every day.
 
-Through my career, I've had the privilege of collaborating with remarkable individuals from whom I've learned immensely. My enthusiasm for machine learning, deep learning, and software engineering is reflected in the various projects you can find on my [GitHub profile](https://github.com/IamGianluca/), which I tackle in my free time.
+Through my career, I've had the privilege of collaborating with amazing people from whom I've learned immensely. My passion for machine learning, deep learning, and software engineering is reflected in the various projects you can find on my [GitHub profile](https://github.com/IamGianluca/), which I tackle in my free time.
 
 This blog is where I share my knowledge on AI/ML topics, discussing both the theoretical underpinnings and practical applications, inspired by the philosophy that teaching is one of the best learning methods.
 
