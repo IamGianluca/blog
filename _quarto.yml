@@ -12,8 +12,10 @@ website:
         href: https://twitter.com/HeyIamGianluca
 format:
   html:
-    theme: cosmo
-    css: styles.css
+    theme:
+      light: cosmo
+      dark: darkly
+    # css: styles.css
 
 execute:
   freeze: auto
