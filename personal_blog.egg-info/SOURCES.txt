@@ -1,0 +1,7 @@
+README.md
+pyproject.toml
+personal_blog.egg-info/PKG-INFO
+personal_blog.egg-info/SOURCES.txt
+personal_blog.egg-info/dependency_links.txt
+personal_blog.egg-info/requires.txt
+personal_blog.egg-info/top_level.txt

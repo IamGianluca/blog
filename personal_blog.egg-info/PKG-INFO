@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: personal-blog
+Version: 0.0.1
+Summary: A personal blog about AI/ML
+Author-email: Gianluca Rossi <gr.gianlucarossi@gmail.com>
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Provides-Extra: dev
+Requires-Dist: ipywidgets; extra == "dev"
+Requires-Dist: jupyterlab; extra == "dev"
+Requires-Dist: pynvim; extra == "dev"
+Requires-Dist: ruff; extra == "dev"
+
+# Personal blog 
+
+To publish an update:
+1. `quarto render`
+1. `quarto publish gh-pages`
+
+To push the changes to the upstream repo:
+1. `git commit -am "<comment>"`

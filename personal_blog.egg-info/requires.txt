@@ -1,0 +1,6 @@
+
+[dev]
+ipywidgets
+jupyterlab
+pynvim
+ruff
