@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://IamGianluca.github.io/blog/posts/2018-03-21-entropy.html</loc>
-    <lastmod>2024-09-02T23:01:54.753Z</lastmod>
-  </url>
-  <url>
-    <loc>https://IamGianluca.github.io/blog/posts/2021-05-28-how-to-start-career-in-data-science.html</loc>
-    <lastmod>2024-09-02T23:01:55.079Z</lastmod>
-  </url>
-  <url>
-    <loc>https://IamGianluca.github.io/blog/posts/2023-04-17-chinchilla.html</loc>
-    <lastmod>2024-09-02T23:01:55.346Z</lastmod>
-  </url>
-  <url>
-    <loc>https://IamGianluca.github.io/blog/posts/2018-02-26-welcome.html</loc>
-    <lastmod>2024-09-02T23:01:55.589Z</lastmod>
-  </url>
-  <url>
-    <loc>https://IamGianluca.github.io/blog/posts/2021-06-19-the-benefits-of-kaggle.html</loc>
-    <lastmod>2024-09-02T23:01:55.902Z</lastmod>
-  </url>
-  <url>
-    <loc>https://IamGianluca.github.io/blog/posts/2018-10-28-1cycle.html</loc>
-    <lastmod>2024-09-02T23:01:56.248Z</lastmod>
-  </url>
-  <url>
-    <loc>https://IamGianluca.github.io/blog/posts/2021-05-29-effective-ml-dl-practitioner.html</loc>
-    <lastmod>2024-09-02T23:01:56.628Z</lastmod>
+    <loc>https://IamGianluca.github.io/blog/index.html</loc>
+    <lastmod>2024-09-05T22:39:07.027Z</lastmod>
   </url>
   <url>
     <loc>https://IamGianluca.github.io/blog/posts/2018-09-14-statistical-rethinking.html</loc>
-    <lastmod>2024-09-02T23:01:56.890Z</lastmod>
+    <lastmod>2024-09-05T22:39:07.031Z</lastmod>
   </url>
   <url>
-    <loc>https://IamGianluca.github.io/blog/index.html</loc>
-    <lastmod>2024-09-02T23:01:57.483Z</lastmod>
+    <loc>https://IamGianluca.github.io/blog/posts/2018-03-21-entropy.html</loc>
+    <lastmod>2024-09-05T22:39:07.031Z</lastmod>
+  </url>
+  <url>
+    <loc>https://IamGianluca.github.io/blog/posts/2021-06-19-the-benefits-of-kaggle.html</loc>
+    <lastmod>2024-09-05T22:39:07.043Z</lastmod>
+  </url>
+  <url>
+    <loc>https://IamGianluca.github.io/blog/posts/2021-05-28-how-to-start-career-in-data-science.html</loc>
+    <lastmod>2024-09-05T22:39:07.043Z</lastmod>
   </url>
   <url>
     <loc>https://IamGianluca.github.io/blog/about.html</loc>
-    <lastmod>2024-09-02T23:01:57.757Z</lastmod>
+    <lastmod>2024-09-05T22:39:07.027Z</lastmod>
+  </url>
+  <url>
+    <loc>https://IamGianluca.github.io/blog/posts/2023-04-17-chinchilla.html</loc>
+    <lastmod>2024-09-05T22:39:07.051Z</lastmod>
+  </url>
+  <url>
+    <loc>https://IamGianluca.github.io/blog/posts/2018-10-28-1cycle.html</loc>
+    <lastmod>2024-09-05T22:39:07.043Z</lastmod>
+  </url>
+  <url>
+    <loc>https://IamGianluca.github.io/blog/posts/2021-05-29-effective-ml-dl-practitioner.html</loc>
+    <lastmod>2024-09-05T22:39:07.043Z</lastmod>
+  </url>
+  <url>
+    <loc>https://IamGianluca.github.io/blog/posts/2018-02-26-welcome.html</loc>
+    <lastmod>2024-09-05T22:39:07.031Z</lastmod>
   </url>
 </urlset>
