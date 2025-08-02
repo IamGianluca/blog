@@ -70,6 +70,7 @@ ipython==8.27.0
     #   ipykernel
     #   ipywidgets
 ipywidgets==8.1.5
+    # via personal-blog (pyproject.toml)
 isoduration==20.11.0
     # via jsonschema
 jedi==0.19.1
@@ -118,6 +119,7 @@ jupyter-server==2.14.2
 jupyter-server-terminals==0.5.3
     # via jupyter-server
 jupyterlab==4.2.5
+    # via personal-blog (pyproject.toml)
 jupyterlab-pygments==0.3.0
     # via nbconvert
 jupyterlab-server==2.27.3
@@ -185,6 +187,7 @@ pygments==2.18.0
     #   ipython
     #   nbconvert
 pynvim==0.5.0
+    # via personal-blog (pyproject.toml)
 python-dateutil==2.9.0.post0
     # via
     #   arrow
@@ -218,6 +221,7 @@ rpds-py==0.20.0
     #   jsonschema
     #   referencing
 ruff==0.6.3
+    # via personal-blog (pyproject.toml)
 send2trash==1.8.3
     # via jupyter-server
 setuptools==74.1.0
